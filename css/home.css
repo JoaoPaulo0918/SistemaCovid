@@ -1,0 +1,105 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav{
+    height: 8vh;
+}
+
+#corpoPagina{
+    width: 35vw;
+    height: 67vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 14px;
+    margin-bottom: 6vh;
+}
+
+figure{ 
+    width: 50px;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+#a{
+    margin-top: -2px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h2{
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+form{
+    width: 30vw;
+    height: 5vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+        
+}
+
+#select1{
+    display: flex;
+    width: 30vw;
+    justify-content: space-around;
+}
+
+#btn1{
+    margin-left: 15px;
+    background-color: rgba(245, 245, 220, 0);
+    border: 1px solid #706f6f;
+    border-radius: 7px;
+}
+
+#btn1:hover{
+    background-color: #706f6f;
+    color:white;
+}
+
+#divEstado{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 30vw;
+    height: 5vh;
+    margin-bottom: 25px;
+    
+}
+
+#resultado{
+    height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+    margin-top: -10px;
+}
+
+footer{
+    background-color: rgb(206, 206, 206);
+    margin-top: 20px;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+#paraRodape{
+    display: flex;
+    margin-top: 18px;
+}
+
+#paraEstado{
+    font-size: 17px;
+}
