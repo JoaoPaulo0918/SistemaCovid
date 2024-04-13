@@ -97,8 +97,8 @@ footer{
 
 #paraRodape{
     display: flex;
-    margin-top: 18px;
-    color: aqua;
+    margin-top: 19px;
+    color: rgb(0, 0, 0);
 }
 
 #paraEstado{

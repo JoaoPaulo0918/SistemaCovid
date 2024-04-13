@@ -1,5 +1,5 @@
 <?php 
-//Conexão com  Banco de Dados
+//Conexão com  Banco de Dados.
 require_once '../conexao/conexao.php';
 
 //Comando feito para puxar os dados da ultima consulta feita pelo usuario.
@@ -16,7 +16,7 @@ $result = $select->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="icon" href="../imagens/logo.png" type="image/png">
+    <link rel="icon" href="../imagens/logoIcon-removebg-preview.png" type="image/png">
     <title>Home</title>
 </head>
 
@@ -31,7 +31,7 @@ $result = $select->fetchAll();
 
                 <!--Aqui guarda o valor de uma figura a ser exibida na pagina-->
                 <figure>
-                    <img src="../imagens/logo.png" alt="Logo" style="width: 35px; height: 35px; margin-top:6px">
+                    <img src="../imagens/logoSitema.png" alt="Logo" style="width: 35px; height: 35px; margin-top:6px">
 
                     <!--Nome que vai ser colocado na figura-->
                     <figcaption hidden>Logo Paises</figcaption>

@@ -31,8 +31,8 @@ function formatarDataHora(dataHora) {
 }
 
 
-//Função com evento de click, para toda dinâmica da pagina
-// Definindo a função de busca
+//Função com evento de click, para toda dinâmica da pagina.
+// Definindo a função de busca.
 async function buscar() {
     let btn = document.getElementById('btn1');
     btn.style.display = 'none';
