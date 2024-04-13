@@ -16,6 +16,7 @@ var selectedOption = '';
 
 let horaConsulta;
 
+//função para fazer a formatação da data e hora
 function formatarDataHora(dataHora) {
     const options = {
         year: 'numeric',
@@ -39,20 +40,15 @@ async function buscar() {
     p.style.display = 'none';
 
     let selectPais = document.getElementById('pais').value;
-    // Normalizaa o valor do país para corresponder ao formato esperado pela API
+    // Normaliza o valor do país para corresponder ao formato esperado pela API
+
     let paisFormatado = selectPais.toLowerCase(); // Converte para minúsculas
 
     // Substituir espaços por traços, se necessário
     paisFormatado = paisFormatado.replace(/\s+/g, '-');
 
-    let url = '';
-
-    //Condição feita para receber tanto a api diretamente com o país expecífico, ou recebendo da variável.
-    if (paisFormatado === 'Brazil') {
-        url = 'https://dev.kidopilabs.com.br/exercicio/covid.php?pais=Brazil';
-    } else {
-        url = 'https://dev.kidopilabs.com.br/exercicio/covid.php?pais=' + paisFormatado;
-    }
+    url = 'https://dev.kidopilabs.com.br/exercicio/covid.php?pais=' + paisFormatado;
+    
 
     try {
 
@@ -154,11 +150,18 @@ async function buscar() {
                     rodape.appendChild(paraRodape);
 
                     // você tem os dados que deseja enviar em variáveis JavaScript
-                    let paisRecebido = paisSelecionado;
-                    let horaRecebida = horaConsulta;
+                    // Armazena os dados relevantes no localStorage
+                    localStorage.setItem('paisSelecionado', paisSelecionado);
+                    localStorage.setItem('horaConsultaFormatada', horaConsultaFormatada);
+
+                    paisSelecionado = localStorage.getItem('paisSelecionado');
+                    horaConsultaFormatada = localStorage.getItem('horaConsultaFormatada');
+
                     // Defina os valores dos campos do formulário com os dados
-                    document.getElementById("paisSelecionado").value = paisRecebido;
-                    document.getElementById("horaConsultaFormatada").value = horaRecebida;
+                    document.getElementById("paisSelecionado").value = paisSelecionado;
+                    document.getElementById("horaConsultaFormatada").value = horaConsultaFormatada;
+
+                    
                     // Envie o formulário
                     document.getElementById("meuFormulario").submit();
 
@@ -185,9 +188,6 @@ async function buscar() {
                     para.textContent = 'Resultados do Estado:';
                     para.style.marginLeft = '8vw';
                     para.style.fontSize = '20px';
-
-
-
 
                 });
 

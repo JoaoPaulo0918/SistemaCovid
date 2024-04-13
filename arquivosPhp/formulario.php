@@ -5,38 +5,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Receba os dados enviados
     $paisSelecionado = $_POST["paisSelecionado"];
     $horaConsultaFormatada = $_POST["horaConsultaFormatada"];
+    //Aqui pode dar um echo e verificar se os dados estão chegando corretamente
 
-    // Faça o que você precisa fazer com os dados recebidos
-    echo "Pais Selecionado: " . $paisSelecionado . "<br>";
-    echo "Hora da Consulta: " . $horaConsultaFormatada;
-}
+    // Remove a parte do fuso horário da string de data/hora
+    $horaConsultaFormatada = preg_replace('/\sGMT.*$/', '', $horaConsultaFormatada);
 
+    $erros = array();
 
+    if (empty($paisSelecionado)) {
+        array_push($erros, 'O campo hora nao pode ficar em branco!');
+    }
 
+    if (count($erros) == 0) {
+        //código de salvar os dados
+        try {
+            require_once '../conexao/conexao.php';
 
-$erros = array();
+            //Comando insert, para salvar dados na tabela.
+            $insert = $pdo->prepare('INSERT INTO paises (pais_selecionado, dataHora) VALUES (:pais_selecionado, :dataHora)');
+            $insert->bindValue(':pais_selecionado', $paisSelecionado);
+            $insert->bindValue(':dataHora', $dataHoraFormatada);
+            $insert->execute();
 
-if (empty($dataHora)) {
-    array_push($erros, 'O campo nome nao pode ficar em branco!');
-}
-
-
-if (count($erros) == 0) {
-    //código de salvar os dados
-    try {
-        require_once '../conexao/conexao.php';
-
-        $insert = $pdo->prepare('INSERT INTO paises (pais_selecionado, dataHora) VALUES (:pais_selecionado, :dataHora)');
-        $insert->bindValue(':pais_selecionado', $paisSelecionado);
-        $insert->bindValue(':dataHora', $dataHora);
-        $insert->execute();
-
-        
-    } catch (PDOException $e) {
-        //$e recebe os erros se ocorrerem e guarda nessa variavel.
-        array_push($erros, );
+            header('Location: javascript:history.back(home.php);');
+        } catch (PDOException $e) {
+            //$e recebe os erros se ocorrerem, e guarda nessa variavel.
+            array_push($erros, $e);
+        }
     }
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -103,6 +101,7 @@ if (count($erros) == 0) {
 
 <body>
 
+<!--Corpo da página, para mostrar erros caso aconteça-->
     <main>
         <h1>Erros</h1>
         <?php foreach ($erros as $e) { ?>
@@ -111,7 +110,7 @@ if (count($erros) == 0) {
             </p>
         <?php } ?>
         <a href="javascript:history.back();">Voltar</a>
-        <!--Serve para usar como voltar no navegador, mas sem perder os dados inseridos na tela. -->
+        <!--Serve para usar quando você quer voltar no navegador, mas sem perder os dados inseridos na tela. -->
     </main>
 </body>
 
