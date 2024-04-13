@@ -1,3 +1,13 @@
+<?php 
+//Conexão com  Banco de Dados
+require_once '../conexao/conexao.php';
+
+//Comando feito para puxar os dados da ultima consulta feita pelo usuario.
+$select = $pdo->prepare('SELECT * FROM paises ORDER BY id DESC LIMIT 1');
+$select->execute();
+$result = $select->fetchAll();
+?> 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -16,7 +26,7 @@
     <header>
 
         <!--Menu de navegação ou navbar-->
-        <nav class="navbar navbar-expand-lg bg-body-secondary">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
 
                 <!--Aqui guarda o valor de uma figura a ser exibida na pagina-->
@@ -119,7 +129,9 @@
 
     <!--Aqui no footer e recibido os valores do país e a hora assim que e feita a consulta-->
     <footer id="rodape">
-        <p id="paraRodape"></p>
+        <?php foreach($result as $res) { ?>
+        <p id="paraRodape">Ultimo acesso: <?php echo $res->pais_selecionado;?> <?php echo $res->dataHora; ?></p>
+        <?php }?>
     </footer>
 
 </body>

@@ -86,7 +86,7 @@ form{
 }
 
 footer{
-    background-color: rgb(206, 206, 206);
+    background-color: #c07575;
     margin-top: 20px;
     height: 8vh;
     display: flex;
@@ -98,6 +98,7 @@ footer{
 #paraRodape{
     display: flex;
     margin-top: 18px;
+    color: aqua;
 }
 
 #paraEstado{

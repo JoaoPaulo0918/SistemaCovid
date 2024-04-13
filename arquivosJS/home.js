@@ -1,7 +1,6 @@
 //Variáveis de título e paragrafo.
 let h2 = document.getElementById('h2');
 
-
 //Variáveis do campo select
 let select = document.getElementById('pais');
 
@@ -142,12 +141,6 @@ async function buscar() {
                             }
                         }
                     }
-
-                    //Aqui nessa parte vai adicionar o valor do pais selecionado no rodape da pagina, sempre que for feito a busca.
-                    let rodape = document.getElementById('rodape');
-                    let paraRodape = document.getElementById('paraRodape');
-                    paraRodape.innerHTML = `Ultimo país visitado foi o: ${paisSelecionado} <br> Data e Hora da consulta: ${horaConsultaFormatada}`;
-                    rodape.appendChild(paraRodape);
 
                     // você tem os dados que deseja enviar em variáveis JavaScript
                     // Armazena os dados relevantes no localStorage
