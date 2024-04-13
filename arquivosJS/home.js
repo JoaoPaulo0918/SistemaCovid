@@ -153,14 +153,14 @@ async function buscar() {
                     paraRodape.innerHTML = `Ultimo país visitado foi o: ${paisSelecionado} <br> Data e Hora da consulta: ${horaConsultaFormatada}`;
                     rodape.appendChild(paraRodape);
 
-                   /* // você tem os dados que deseja enviar em variáveis JavaScript
+                    // você tem os dados que deseja enviar em variáveis JavaScript
                     let paisRecebido = paisSelecionado;
                     let horaRecebida = horaConsulta;
                     // Defina os valores dos campos do formulário com os dados
                     document.getElementById("paisSelecionado").value = paisRecebido;
                     document.getElementById("horaConsultaFormatada").value = horaRecebida;
                     // Envie o formulário
-                    document.getElementById("meuFormulario").submit();*/
+                    document.getElementById("meuFormulario").submit();
 
 
                     //Esse mesmo codigo aqui dessa vez vai receber o valor geral de mortes e confimados no pais.

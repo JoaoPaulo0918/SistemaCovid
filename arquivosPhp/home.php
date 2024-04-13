@@ -86,6 +86,7 @@
 
                         <!--Input do tipo button, usando a função de click assim que escolhe o país-->
                         <input type="submit" value=" Buscar &#10227;" id="btn1">
+                        
                     </div>
 
                     <br>
@@ -93,10 +94,11 @@
                     <!--Div onde contem o select de estados selecionados a partir do país-->
                     <div id="divEstado">
                         <p id="paraEstado">Selecione o Estado <select name="" id="estadoSelect"></select></p>
+                        <input type="hidden" value="Acessar" id="btt">
                     </div>
 
                     <!--Fomulário para armazenar a hora e o país no banco de dados, assim que e feita a consulta através do click -->
-                    <form action="arquivo.php" method="post" id="meuFormulario">
+                    <form action="formulario.php" method="post" id="meuFormulario">
                         <input type="hidden" name="paisSelecionado" id="paisSelecionado">
                         <input type="hidden" name="horaConsultaFormatada" id="horaConsultaFormatada">
                         <!-- Outros campos do formulário -->
