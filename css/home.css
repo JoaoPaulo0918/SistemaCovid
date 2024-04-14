@@ -65,12 +65,26 @@ form{
     color:white;
 }
 
+#btt{
+    
+    background-color: rgba(245, 245, 220, 0);
+    border: 1px solid #706f6f;
+    border-radius: 7px;
+}
+
+#btt:hover{
+    background-color: #706f6f;
+    color:white;
+}
+
 #divEstado{
     display: flex;
     align-items: start;
-    justify-content: space-between;
+    justify-content: center;
+    flex-direction: column;
     width: 30vw;
     height: 5vh;
+    margin-top: 25px;
     margin-bottom: 25px;
     
 }

@@ -104,7 +104,7 @@ $result = $select->fetchAll();
                     <!--Div onde contem o select de estados selecionados a partir do país-->
                     <div id="divEstado">
                         <p id="paraEstado">Selecione o Estado <select name="" id="estadoSelect"></select></p>
-                        <input type="hidden" value="Acessar" id="btt">
+                        <p><input type="hidden" value="Acessar" id="btt"></p>
                     </div>
 
                     <!--Fomulário para armazenar a hora e o país no banco de dados, assim que e feita a consulta através do click -->
