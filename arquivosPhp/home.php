@@ -1,11 +1,13 @@
 <?php 
-//Conexão com  Banco de Dados.
+
+// Conexão com o Banco de Dados
 require_once '../conexao/conexao.php';
 
-//Comando feito para puxar os dados da ultima consulta feita pelo usuario.
+// Puxa os dados do último acesso
 $select = $pdo->prepare('SELECT * FROM paises ORDER BY id DESC LIMIT 1');
 $select->execute();
 $result = $select->fetchAll();
+
 ?> 
 
 <!DOCTYPE html>
@@ -16,7 +18,7 @@ $result = $select->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="icon" href="../imagens/logoIcon-removebg-preview.png" type="image/png">
+    <link rel="icon" href="../imagens/Covid19.png" type="image/png">
     <title>Home</title>
 </head>
 
@@ -31,7 +33,7 @@ $result = $select->fetchAll();
 
                 <!--Aqui guarda o valor de uma figura a ser exibida na pagina-->
                 <figure>
-                    <img src="../imagens/logoSitema.png" alt="Logo" style="width: 35px; height: 35px; margin-top:6px">
+                    <img src="../imagens/logo1.png" alt="Logo" id="imgLogo">
 
                     <!--Nome que vai ser colocado na figura-->
                     <figcaption hidden>Logo Paises</figcaption>
@@ -49,7 +51,7 @@ $result = $select->fetchAll();
                         <li class="nav-item">
 
                             <!--Link para acessar outras paginas ou percorrer pela mesma-->
-                            <a class="nav-link active" aria-current="page" href="home.php" id="a">Atualizar Pagina
+                            <a class="nav-link active" aria-current="page" href="home.php" id="a">
 
                                 <!--Icon de arrow, vindo do bootstrap-->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
@@ -66,27 +68,21 @@ $result = $select->fetchAll();
     </header>
 
     <!--Corpo da pagina-->
-    <main class="container">
+    <main class="container" id="corpoPrincipal">
 
 
-        <!--Div criada como class row, para agrupar outras divs-->
-        <div class="row d-flex justify-content-center mt-5">
+        <!--Div que contem os dados da pagina-->
+        <div class="card mt-4">
+            <div class="card-body">
 
-            <!--div class col, aqui determina o lugar dos elementos na tela-->
-            <div class="col-sm-6 col-md-8 col-lg-7">
+                <!--Sub-Titúlo da pagina-->
+                <div> <img src="../imagens/logo1.png" alt="" id="imgTitulo"></div>
 
-                <!--Div que contem os dados da pagina-->
-                <div id="corpoPagina" class="container-fluid">
-
-                    <!--Sub-Titúlo da pagina-->
-                    <h2 id="h2">MORTES POR COVID-19 </h2>
-
-                    <!--Parágrafo indicando como consultar o país-->
-                    <p id="p">Selecione o País desejado</p>
-
-
-                    <!--Aqui contem a tag select, usada para armazenar os países expecíficos-->
-                    <div id="select1">
+                
+                <!--Aqui contem a tag select, usada para armazenar os países expecíficos-->
+                <div class="container-fluid" id="select">
+                        
+                    <form action="formulario.php" method="post" id="form1">
                         <select class="form-select" id="pais" name="pais">
                             <option>Selecione o País</option>
                             <option value="Brazil" name="pais">Brasil</option>
@@ -96,43 +92,47 @@ $result = $select->fetchAll();
 
                         <!--Input do tipo button, usando a função de click assim que escolhe o país-->
                         <input type="submit" value=" Buscar &#10227;" id="btn1">
-                        
-                    </div>
 
-                    <br>
-
-                    <!--Div onde contem o select de estados selecionados a partir do país-->
-                    <div id="divEstado">
-                        <p id="paraEstado">Selecione o Estado <select name="" id="estadoSelect"></select></p>
-                        <p><input type="hidden" value="Acessar" id="btt"></p>
-                    </div>
-
-                    <!--Fomulário para armazenar a hora e o país no banco de dados, assim que e feita a consulta através do click -->
-                    <form action="formulario.php" method="post" id="meuFormulario">
-                        <input type="hidden" name="paisSelecionado" id="paisSelecionado">
-                        <input type="hidden" name="horaConsultaFormatada" id="horaConsultaFormatada">
-                        <!-- Outros campos do formulário -->
                     </form>
 
-
-
-                    <!--Div que armazena os valores vindos do estado selecionado-->
-                    <div id="resultado"></div>
-
+                        
                 </div>
 
+                <!--Div onde vai mostrar os resultados totais apenas do país-->
+                <div id="divResult"></div>
+
+                <table class="table table-striped" >
+  
+
+                    <!--Cabeçalho da tabela-->
+                    <thead>
+                        <tr>
+                            <th scope="col">País</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Casos Confirmados no Estado</th>
+                            <th scope="col">Mortes no Estado</th>
+                        </tr>
+                    </thead>
+
+    
+                    <tbody id="tabela-corpo">
+                        <!-- Aqui as linhas vão ser preenchidas dinâmicamente -->
+                    </tbody>
+
+                </table>
+
             </div>
-
         </div>
+
+
+        <!--Aqui no footer é recibido os valores do país e a hora, assim que e feita a consulta-->
+        <footer id="rodape">
+            <?php foreach($result as $res) { ?>
+                <p id="paraRodape">Ultimo acesso: <?php echo $res->pais_selecionado;?> <?php echo $res->dataHora; ?></p>
+            <?php }?>
+        </footer>
+         
     </main>
-
-
-    <!--Aqui no footer e recibido os valores do país e a hora assim que e feita a consulta-->
-    <footer id="rodape">
-        <?php foreach($result as $res) { ?>
-        <p id="paraRodape">Ultimo acesso: <?php echo $res->pais_selecionado;?> <?php echo $res->dataHora; ?></p>
-        <?php }?>
-    </footer>
 
 </body>
 

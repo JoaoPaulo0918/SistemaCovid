@@ -3,9 +3,8 @@ date_default_timezone_set('America/Sao_Paulo');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Receba os dados enviados
-    $paisSelecionado = $_POST["paisSelecionado"];
+    $paisSelecionado = $_POST["pais"];
     $horaConsultaFormatada = $_POST["horaConsultaFormatada"];
-    //Aqui pode dar um echo e verificar se os dados estão chegando corretamente
 
     // Remove a parte do fuso horário da string de data/hora
     $horaConsultaFormatada = preg_replace('/\sGMT.*$/', '', $horaConsultaFormatada);
